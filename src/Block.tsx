@@ -19,8 +19,8 @@ type PointName =
   | "K" /*  K   │   L -  row6 */
   | "L" /*    ╲ │ ╱           */
   | "M"; /*     M     -  row7 */
-/*        ╷   ╷   ╷         */
-/*     col1  col2 col3      */
+/*          ╷   ╷   ╷         */
+/*       col1  col2 col3      */
 
 const col1 = 4;
 const col2 = 52;
@@ -51,8 +51,8 @@ const Points = new Map<PointName, Point>([
 ]);
 
 const buildPathDefinition = (edge: string): string => {
-  const startPointName = edge?.[0] as PointName;
-  const endPointName = edge?.[1] as PointName;
+  const startPointName = edge[0] as PointName;
+  const endPointName = edge[1] as PointName;
 
   const start = Points.get(startPointName);
   const end = Points.get(endPointName);
@@ -93,7 +93,7 @@ const SegmentHitBox = ({ edge, onClick }: SegmentHitBoxProps) => (
     strokeMiterlimit={0}
     strokeLinecap="round"
     strokeLinejoin="bevel"
-    onClick={(event) => {
+    onClick={() => {
       onClick?.(edge);
     }}
   />
