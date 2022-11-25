@@ -1,0 +1,54 @@
+.App {
+  font-family: sans-serif;
+}
+
+.word {
+  display: inline-block;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  white-space: nowrap;
+}
+
+svg.block {
+  display: inline-block;
+  --scale: 0.25;
+  width: calc(var(--scale) / 1 * 104px);
+  margin-left: calc(var(--scale) / 1 * -8px);
+}
+
+svg:first-of-type {
+  margin-left: 0;
+}
+
+.segment-hit-box {
+  cursor: pointer;
+}
+
+.word .text {
+  display: block;
+  text-align: center;
+  font-size: 18px;
+}
+
+.editor svg.block {
+  --scale: 1;
+  margin: 0 50px;
+}
+
+.editor .panel {
+  display: inline-block;
+  vertical-align: top;
+  padding: 20px;
+}
+
+.editor .actions {
+  padding: 10px 0;
+}
+
+.editor .actions button {
+  margin-right: 10px;
+}
+
+.words {
+  margin-top: 20px;
+}
