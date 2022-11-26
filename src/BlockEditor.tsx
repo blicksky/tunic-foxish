@@ -1,34 +1,51 @@
 import * as React from "react";
 import { useReducer } from "react";
-import { Block } from "./Block";
+import { Block, Edge } from "./Block";
 
-const reduce = (
-  prevEdges: Set<string>,
-  action: { type: "toggle"; edge: string } | { type: "clear" }
-) => {
-  if (action.type === "toggle") {
-    const newEdges = new Set(prevEdges);
+const toggleEdges = (edges: Set<Edge>, edge: Edge): Set<Edge> => {
+  const updatedEdges = new Set(edges);
 
-    if (prevEdges.has(action.edge)) {
-      newEdges.delete(action.edge);
-    } else {
-      newEdges.add(action.edge);
+  if (edges.has(edge)) {
+    updatedEdges.delete(edge);
+  } else {
+    updatedEdges.add(edge);
+  }
+
+  return updatedEdges;
+}
+
+type BlockEditorProps = {
+  onChange?: (BlockDefinition: Set<Edge>) => void
+}
+export const BlockEditor = ({ onChange }: BlockEditorProps) => {
+  const reduce = (
+    prevEdges: Set<Edge>,
+    action: { type: "toggle"; edge: Edge } | { type: "clear" }
+  ) => {
+    let newEdges;
+
+    switch (action.type) {
+      case "toggle":
+        newEdges = toggleEdges(prevEdges, action.edge);
+        break;
+      case "clear":
+        newEdges = new Set<Edge>();
+        break;
+      default:
+        throw new Error();
     }
 
+    onChange?.(newEdges);
+
     return newEdges;
-  } else if (action.type === "clear") {
-    return new Set<string>();
-  } else {
-    throw new Error();
-  }
-};
-export const BlockEditor = () => {
-  const [edges, dispatch] = useReducer(reduce, new Set<string>());
+  };
+
+  const [edges, dispatch] = useReducer(reduce, new Set<Edge>());
 
   return (
     <div className="editor">
       <Block
-        edges={Array.from(edges)}
+        edges={edges}
         onEdgeClick={(edge) => {
           dispatch({ type: "toggle", edge });
         }}

@@ -16,6 +16,10 @@ svg.block {
   margin-left: calc(var(--scale) / 1 * -8px);
 }
 
+svg.block.highlighted {
+  background-color: yellow;
+}
+
 svg:first-of-type {
   margin-left: 0;
 }
@@ -33,6 +37,11 @@ svg:first-of-type {
 .editor svg.block {
   --scale: 1;
   margin: 0 50px;
+}
+
+.editor svg.block text {
+  fill: gray;
+  font-size: 8px;
 }
 
 .editor .panel {
