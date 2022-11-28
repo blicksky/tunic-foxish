@@ -146,19 +146,18 @@ const CenterLine = () => (
   />
 );
 
-
-
 type BlockProps = {
   edges: Set<Edge>;
   isHighlighted?: boolean;
+  label?: string;
   onEdgeClick?: (edge: Edge) => void;
 };
-const Block = ({ edges = new Set(), isHighlighted = false, onEdgeClick }: BlockProps) => {
+const Block = ({ edges = new Set(), isHighlighted = false, label, onEdgeClick }: BlockProps) => {
 
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox={`0 0 104 196`}
+      viewBox={`0 0 104 226`}
       fill="none"
       className={`block ${isHighlighted ? "highlighted" : ""}`}
     >
@@ -175,6 +174,7 @@ const Block = ({ edges = new Set(), isHighlighted = false, onEdgeClick }: BlockP
           <SegmentHitBox edge={edge} onClick={onEdgeClick} key={`${edge}`} />
         ))
         : null}
+      <text className="label" x="40" y={Row._7 + 35}>{label}</text>
     </svg>
   );
 };
