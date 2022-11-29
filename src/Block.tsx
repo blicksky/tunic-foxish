@@ -155,27 +155,28 @@ type BlockProps = {
 const Block = ({ edges = new Set(), isHighlighted = false, label, onEdgeClick }: BlockProps) => {
 
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox={`0 0 104 226`}
-      fill="none"
-      className={`block ${isHighlighted ? "highlighted" : ""}`}
-    >
-      {allEdges.map((edge) => (
-        <Segment edge={edge} isFilled={false} key={`${edge}`} />
-      ))}
-      {Array.from(edges).map((edge) => (
-        <Segment edge={edge} isFilled={true} key={`${edge}`} />
-      ))}
-      <CenterLine />
-      {Object.entries(points).map(([pointId, { x, y }]) => <text key={pointId} x={x - 4} y={y + 12}>{pointId}</text>)}
-      {onEdgeClick
-        ? allEdges.map((edge) => (
-          <SegmentHitBox edge={edge} onClick={onEdgeClick} key={`${edge}`} />
-        ))
-        : null}
-      <text className="label" x="40" y={Row._7 + 35}>{label}</text>
-    </svg>
+    <div className={`block ${isHighlighted ? "highlighted" : ""}`}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox={`0 0 104 186`}
+        fill="none"
+      >
+        {allEdges.map((edge) => (
+          <Segment edge={edge} isFilled={false} key={`${edge}`} />
+        ))}
+        {Array.from(edges).map((edge) => (
+          <Segment edge={edge} isFilled={true} key={`${edge}`} />
+        ))}
+        <CenterLine />
+        {Object.entries(points).map(([pointId, { x, y }]) => <text key={pointId} x={x - 4} y={y + 12}>{pointId}</text>)}
+        {onEdgeClick
+          ? allEdges.map((edge) => (
+            <SegmentHitBox edge={edge} onClick={onEdgeClick} key={`${edge}`} />
+          ))
+          : null}
+      </svg>
+      <span className="label">{label}</span>
+    </div>
   );
 };
 

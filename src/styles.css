@@ -9,25 +9,25 @@
   vertical-align: middle;
 }
 
-svg.block {
+.block {
   display: inline-block;
-  --scale: 0.5;
+  text-align: center;
+  line-height: 0.5;
+  --scale: 1;
   width: calc(var(--scale) / 1 * 104px);
   margin-left: calc(var(--scale) / 1 * -8px);
 }
 
-svg.block.highlighted {
+.block svg {
+  display: block;
+}
+
+.block.highlighted svg {
   background-color: yellow;
 }
 
-svg.block .superscript {
-  fill: red;
-  font-size: 20px;
-}
-
-svg.block .label {
-  fill: black;
-  font-size: 1.5rem;
+.block .label {
+  font-size: 0.5rem;
 }
 
 svg:first-of-type {
@@ -52,12 +52,11 @@ svg:first-of-type {
   background-color: white;
 }
 
-.editor svg.block {
-  --scale: 1;
-  margin: 0 50px;
+.editor .block {
+  --scale: 0.75;
 }
 
-.editor svg.block text {
+.editor .block svg text {
   fill: gray;
   font-size: 8px;
 }
@@ -86,8 +85,9 @@ svg:first-of-type {
   margin-right: 10px;
 }
 
-#known-blocks li svg.block {
-  --scale: 0.4;
+#known-blocks li .block {
+  --scale: 0.2;
+  cursor: pointer;
 }
 
 .words {
@@ -116,6 +116,10 @@ svg:first-of-type {
   object-fit: cover;
 }
 
+.notes .section .block {
+  --scale: 0.2;
+}
+
 .left-page {
   position: relative;
   margin-left: -100px;
@@ -128,25 +132,35 @@ svg:first-of-type {
 .notes {
   display: inline-block;
   vertical-align: top;
-  width: 680px;
-  margin: 10px;
+  width: 600px;
+  border-right: 1px solid gray;
 }
 
-.content-section {
+.section {
   display: inline-block;
   white-space: nowrap;
   border: 1px solid lightblue;
   padding: 3px;
   position: relative;
-  margin: 5px 5px;
+  margin: 1px 1px;
   vertical-align: top;
 }
 
-.content-section:before {
+.section:before {
   content: attr(title);
   font-size: 0.6rem;
   background-color: lightblue;
   padding: 2px;
   display: block;
   margin-bottom: 2px;
+}
+
+.preview button {
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.preview .block {
+  --scale: 0.2;
+  vertical-align: middle;
 }

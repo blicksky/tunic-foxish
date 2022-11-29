@@ -15,7 +15,7 @@ const toggleEdges = (edges: Set<Edge>, edge: Edge): Set<Edge> => {
 }
 
 type BlockEditorProps = {
-  onChange?: (BlockDefinition: Set<Edge>) => void
+  onChange?: (blockDefinition: Set<Edge>) => void;
 }
 export const BlockEditor = ({ onChange }: BlockEditorProps) => {
   const reduce = (
